@@ -1,0 +1,41 @@
+%script
+  var feelings = <%= @feelings %>;
+%script{src: "feelingsVote.js"}
+
+%h1
+  Hello, #{@current_client.ip_address}!
+%h2
+  How are you today?
+#poll-responses
+  - Feeling.columns.map(&:name).each do |col|
+    - unless ["id", "created_at", "updated_at"].include? col
+      =label_tag col.split("_").map!(&:capitalize).join(" ")
+      = radio_button_tag("feeling".to_sym, col)
+  = submit_tag "Vote now!", id: "vote-button"
+%h3 Previous visitors
+%table
+  %thead
+    %tr
+      %th
+        IP Address
+      %th
+        Browser
+      %th
+        OS
+      %th
+        User Agent
+      %th
+        SSL?
+  %tbody
+    - @clients.each do |client|
+      %tr
+        %td
+          = client.ip_address
+        %td
+          = client.browser
+        %td
+          = client.os
+        %td
+          = client.user_agent
+        %td
+          = client.ssl

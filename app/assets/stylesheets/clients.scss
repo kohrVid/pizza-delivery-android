@@ -1,0 +1,23 @@
+// Place all the styles related to the clients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$line: 1px solid #111;
+table {
+  border: $line;
+  tr {
+    border-bottom: $line;
+  }
+  tr:last-child {
+    border-bottom: 0 !important;
+  }
+  th, td{
+    border-right: $line;
+  }
+  th:first-child, td:first-child{
+    border-left: 0 !important;
+  }
+  th:last-child, td:last-child{
+    border-right: 0 !important;
+  }
+}
